@@ -25,3 +25,15 @@ module.exports.getOne = (request, response) => {
         .then(person => response.json({person:person}))
         .catch(err => response.json(err));
 }
+
+module.exports.updatePerson = (request, response) => {
+    person.findOneAndUpdate({_id: request.params._id}, request.body, {new:true})
+        .then(updatedPerson => response.json(updatedPerson))
+        .catch(err => response.json(err))
+}
+
+module.exports.deletePerson = (request, response) => {
+    person.deleteOne({ _id: request.params._id }) 
+        .then(person => response.json(person))
+        .catch(err => response.json(err))
+}
